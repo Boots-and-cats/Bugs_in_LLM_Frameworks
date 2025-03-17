@@ -1,0 +1,114 @@
+// SankeyMATIC diagram inputs - Saved: 2025/3/17 11:12:11
+// https://sankeymatic.com/build/
+
+// === Nodes and Flows ===
+
+# Root Causes to Symptoms
+API Misuse [130] Crash
+API Misuse [74] Incorrect Functionality
+API Misuse [21] Unexpected Output
+API Misuse [4] Hang
+API Misuse [4] External Connection Failure
+API Misuse [21] Unidentified
+
+Incompatibility [17] Crash
+Incompatibility [13] Incorrect Functionality
+Incompatibility [4] Unexpected Output
+Incompatibility [18] External Connection Failure
+Incompatibility [4] Unidentified
+
+Assignment Issue [19] Crash
+Assignment Issue [15] Incorrect Functionality
+Assignment Issue [2] Unexpected Output
+Assignment Issue [2] Hang
+Assignment Issue [1] External Connection Failure
+Assignment Issue [2] Unidentified
+
+Parameter/Argument Issue [30] Crash
+Parameter/Argument Issue [62] Incorrect Functionality
+Parameter/Argument Issue [21] Unexpected Output
+Parameter/Argument Issue [37] External Connection Failure
+Parameter/Argument Issue [10] Unidentified
+
+Code Logic Issue [100] Crash
+Code Logic Issue [133] Incorrect Functionality
+Code Logic Issue [90] Unexpected Output
+Code Logic Issue [21] Hang
+Code Logic Issue [15] External Connection Failure
+Code Logic Issue [31] Unidentified
+
+Import Error [21] Crash
+Import Error [1] Incorrect Functionality
+Import Error [2] Unexpected Output
+Import Error [7] External Connection Failure
+Import Error [5] Unidentified
+
+Typo [11] Incorrect Functionality
+Typo [13] Unexpected Output
+Typo [14] External Connection Failure
+Typo [10] Unidentified
+
+Incorrect Exception Handling [6] Crash
+Incorrect Exception Handling [4] Incorrect Functionality
+Incorrect Exception Handling [12] Unexpected Output
+Incorrect Exception Handling [2] Hang
+Incorrect Exception Handling [7] External Connection Failure
+
+Incorrect Numerical Computation [3] Crash
+Incorrect Numerical Computation [2] Incorrect Functionality
+Incorrect Numerical Computation [4] Unexpected Output
+Incorrect Numerical Computation [1] Unidentified
+
+// === Settings ===
+
+size w 600
+  h 600
+margin l 12
+  r 12
+  t 18
+  b 20
+bg color #ffffff
+  transparent N
+node w 12
+  h 50
+  spacing 75
+  border 0
+  theme a
+  color #888888
+  opacity 1
+flow curvature 0.5
+  inheritfrom outside-in
+  color #999999
+  opacity 0.45
+layout order automatic
+  justifyorigins N
+  justifyends N
+  reversegraph N
+  attachincompletesto nearest
+labels color #000000
+  hide N
+  highlight 0.75
+  fontface sans-serif
+  linespacing 0.2
+  relativesize 110
+  magnify 100
+labelname appears Y
+  size 16
+  weight 400
+labelvalue appears Y
+  fullprecision Y
+  position below
+  weight 400
+labelposition autoalign 0
+  scheme auto
+  first before
+  breakpoint 3
+value format ',.'
+  prefix ''
+  suffix ''
+themeoffset a 6
+  b 0
+  c 0
+  d 0
+meta mentionsankeymatic Y
+  listimbalances Y
