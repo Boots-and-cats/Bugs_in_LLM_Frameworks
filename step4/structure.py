@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import matplotlib.font_manager as fm
 
-# Data
-categories = [
+# Data from the table (excluding total row)
+root_causes = [
     "R1", 
     "R2",
     "R3",
@@ -15,45 +16,50 @@ categories = [
     "R9"
 ]
 
-frameworks = ["LC", "LI", "HS", "Total"]
+# Include Total column
+components = ["DP", "CS", "AC", "FM", "Total"]
 
-# Raw data for each framework
+# Updated data matrix with corrected values and total column
 raw_data = np.array([
-    [139, 112, 3, 254],  # API Misuse
-    [36, 15, 5, 56],     # Incompatibility
-    [22, 19, 0, 41],     # Assignment Issue
-    [96, 59, 5, 160],    # Parameter/Argument Issue
-    [163, 182, 45, 390], # Code Logic Issue
-    [19, 13, 4, 36],     # Import Error
-    [27, 19, 2, 48],     # Typo
-    [14, 14, 3, 31],     # Incorrect Exception Handling
-    [5, 3, 2, 10]        # Incorrect Numerical Computation
+    [103, 59, 22, 70, 254],
+    [15, 22, 16, 3, 56],
+    [24, 7, 4, 6, 41],
+    [63, 51, 15, 31, 160],
+    [150, 82, 27, 131, 390],
+    [14, 9, 2, 11, 36],
+    [17, 9, 8, 14, 48],
+    [16, 6, 6, 3, 31],
+    [6, 2, 0, 2, 10]
 ])
 
-# Calculate column sums for normalization
-column_sums = np.sum(raw_data, axis=0)
+# Calculate column sums for normalization (excluding total column)
+column_sums = raw_data[:, :-1].sum(axis=0)
 
-# Create normalized data
-normalized_data = np.zeros_like(raw_data, dtype=float)
-for j in range(len(frameworks)):
+# Create normalized data for the first 4 columns
+normalized_data = np.zeros((len(root_causes), len(components)))
+for j in range(4):  # First 4 columns (components)
     normalized_data[:, j] = raw_data[:, j] / column_sums[j] * 100
+
+# Normalize the total column separately
+total_sum = raw_data[:, 4].sum()
+normalized_data[:, 4] = raw_data[:, 4] / total_sum * 100
 
 # Create the figure and set its size
 plt.figure(figsize=(14, 10))
 
 # Create a blank heatmap without annotations first
 ax = sns.heatmap(normalized_data, annot=False, fmt=".1f", cmap="Blues", 
-                 xticklabels=frameworks, 
-                 yticklabels=categories,
-                 vmin=0, vmax=35,  # Set fixed range for better contrast 
-                 cbar_kws={'label': 'Percentage within Framework (%)'})
+                 xticklabels=components, 
+                 yticklabels=root_causes,
+                 vmin=0, vmax=40,  # Set fixed range for better contrast
+                 cbar_kws={'label': 'Percentage within Component (%)'})
 
 # Add custom annotations with both percentage and raw count
-for i in range(len(categories)):
-    for j in range(len(frameworks)):
+for i in range(len(root_causes)):
+    for j in range(len(components)):
         # Determine text color based on cell intensity for better readability
         cell_value = normalized_data[i, j]
-        if cell_value > 18:  # Threshold for switching text color
+        if cell_value > 20:  # Threshold for switching text color
             text_color = 'white'
         else:
             text_color = 'black'
@@ -74,7 +80,7 @@ plt.yticks(rotation=0, fontweight='normal', fontsize=25)
 
 # Make colorbar label and ticks bold and larger
 cbar = ax.collections[0].colorbar
-cbar.ax.set_ylabel('Percentage within Framework (%)', fontweight='normal', fontsize=21)
+cbar.ax.set_ylabel('Percentage within Component (%)', fontweight='normal', fontsize=21)
 cbar.ax.tick_params(labelsize=14)
 for l in cbar.ax.yaxis.get_ticklabels():
     l.set_weight('normal')
@@ -89,16 +95,15 @@ for _, spine in ax.spines.items():
 plt.tight_layout()
 
 # Save and show the plot
-plt.savefig('normalized_root_cause_framework_distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig('normalized_root_cause_component_distribution.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 # import matplotlib.pyplot as plt
 # import numpy as np
 # import seaborn as sns
-# import matplotlib.colors as mcolors
 
-# # Data
-# categories = [
+# # Data from the table (excluding total row)
+# symptoms = [
 #     "S1", 
 #     "S2",
 #     "S3",
@@ -107,46 +112,47 @@ plt.show()
 #     "S6"
 # ]
 
-# frameworks = ["LC", "LI", "HS", "Total"]
+# # Include Total column
+# components = ["DP", "CS", "AC", "FM", "Total"]
 
-# # Raw data for each framework
+# # Data from the table
 # raw_data = np.array([
-#     [185, 114, 27, 326],  # Crash
-#     [120, 175, 20, 315],  # Incorrect Functionality
-#     [82, 77, 10, 169],    # Unexpected Output
-#     [15, 11, 3, 29],      # Hang
-#     [76, 24, 3, 103],     # External Connection Failure
-#     [43, 35, 6, 84]       # Unidentified
+#     [110, 82, 29, 105, 326],
+#     [160, 67, 24, 64, 315],
+#     [50, 40, 13, 66, 169],
+#     [4, 5, 5, 15, 29],
+#     [50, 24, 4, 25, 103],
+#     [31, 23, 9, 21, 84]
 # ])
 
-# # Calculate column sums for normalization
-# column_sums = np.sum(raw_data, axis=0)
+# # Calculate column sums for normalization (excluding total column)
+# column_sums = raw_data[:, :-1].sum(axis=0)
 
-# # Create normalized data
-# normalized_data = np.zeros_like(raw_data, dtype=float)
-# for j in range(len(frameworks)):
+# # Create normalized data for the first 4 columns
+# normalized_data = np.zeros((len(symptoms), len(components)))
+# for j in range(4):  # First 4 columns (components)
 #     normalized_data[:, j] = raw_data[:, j] / column_sums[j] * 100
+
+# # Normalize the total column separately
+# total_sum = raw_data[:, 4].sum()
+# normalized_data[:, 4] = raw_data[:, 4] / total_sum * 100
 
 # # Create the figure and set its size
 # plt.figure(figsize=(14, 10))
 
-# # Create a custom colormap with stronger contrast
-# cmap = sns.color_palette("Blues", as_cmap=True)
-# # Alternative with more contrast: cmap = plt.cm.Blues_r
-
 # # Create a blank heatmap without annotations first
-# ax = sns.heatmap(normalized_data, annot=False, fmt=".1f", cmap=cmap, 
-#                  xticklabels=frameworks, 
-#                  yticklabels=categories,
-#                  vmin=0, vmax=45,  # Set fixed range for better contrast
-#                  cbar_kws={'label': 'Percentage within Framework (%)'})
+# ax = sns.heatmap(normalized_data, annot=False, fmt=".1f", cmap="Blues", 
+#                  xticklabels=components, 
+#                  yticklabels=symptoms,
+#                  vmin=0, vmax=40,  # Set fixed range for better contrast
+#                  cbar_kws={'label': 'Percentage within Component (%)'})
 
 # # Add custom annotations with both percentage and raw count
-# for i in range(len(categories)):
-#     for j in range(len(frameworks)):
+# for i in range(len(symptoms)):
+#     for j in range(len(components)):
 #         # Determine text color based on cell intensity for better readability
 #         cell_value = normalized_data[i, j]
-#         if cell_value > 25:  # Threshold for switching text color
+#         if cell_value > 20:  # Threshold for switching text color
 #             text_color = 'white'
 #         else:
 #             text_color = 'black'
@@ -167,7 +173,7 @@ plt.show()
 
 # # Make colorbar label and ticks bold and larger
 # cbar = ax.collections[0].colorbar
-# cbar.ax.set_ylabel('Percentage within Framework (%)', fontweight='normal', fontsize=23)
+# cbar.ax.set_ylabel('Percentage within Component (%)', fontweight='normal', fontsize=21)
 # cbar.ax.tick_params(labelsize=14)
 # for l in cbar.ax.yaxis.get_ticklabels():
 #     l.set_weight('normal')
@@ -182,5 +188,5 @@ plt.show()
 # plt.tight_layout()
 
 # # Save and show the plot
-# plt.savefig('normalized_symptoms_framework_distribution.png', dpi=300, bbox_inches='tight')
+# plt.savefig('normalized_symptoms_component_distribution.png', dpi=300, bbox_inches='tight')
 # plt.show()

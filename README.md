@@ -1,6 +1,6 @@
-# A Characterization Study of Bugs in Large Language Model Workflow Orchestration Frameworks
+# A Characterization Study of Bugs in LLM Agent Workflow Orchestration Frameworks
 
-This repository contains the materials and findings from the first comprehensive empirical study on bugs in Large Language Model workflow orchestration frameworks, helping to reproduce the methodology in this paper.
+This repository contains the materials and findings from the first comprehensive empirical study on bugs in LLM agent workflow orchestration frameworks, helping to reproduce the methodology in this paper.
 
 ## Research Questions
 

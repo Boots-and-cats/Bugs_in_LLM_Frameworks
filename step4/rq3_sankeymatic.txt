@@ -1,63 +1,63 @@
-// SankeyMATIC diagram inputs - Saved: 2025/3/17 11:12:11
+// SankeyMATIC diagram inputs - Saved: 2025/5/31 17:23:48
 // https://sankeymatic.com/build/
 
 // === Nodes and Flows ===
 
-# Root Causes to Symptoms
-API Misuse [130] Crash
-API Misuse [74] Incorrect Functionality
-API Misuse [21] Unexpected Output
-API Misuse [4] Hang
-API Misuse [4] External Connection Failure
-API Misuse [21] Unidentified
+# R-Codes to S-Codes
+R1 [130] S1
+R1 [74] S2
+R1 [21] S3
+R1 [4] S4
+R1 [4] S5
+R1 [21] S6
 
-Incompatibility [17] Crash
-Incompatibility [13] Incorrect Functionality
-Incompatibility [4] Unexpected Output
-Incompatibility [18] External Connection Failure
-Incompatibility [4] Unidentified
+R2 [17] S1
+R2 [13] S2
+R2 [4] S3
+R2 [18] S5
+R2 [4] S6
 
-Assignment Issue [19] Crash
-Assignment Issue [15] Incorrect Functionality
-Assignment Issue [2] Unexpected Output
-Assignment Issue [2] Hang
-Assignment Issue [1] External Connection Failure
-Assignment Issue [2] Unidentified
+R3 [19] S1
+R3 [15] S2
+R3 [2] S3
+R3 [2] S4
+R3 [1] S5
+R3 [2] S6
 
-Parameter/Argument Issue [30] Crash
-Parameter/Argument Issue [62] Incorrect Functionality
-Parameter/Argument Issue [21] Unexpected Output
-Parameter/Argument Issue [37] External Connection Failure
-Parameter/Argument Issue [10] Unidentified
+R4 [30] S1
+R4 [62] S2
+R4 [21] S3
+R4 [37] S5
+R4 [10] S6
 
-Code Logic Issue [100] Crash
-Code Logic Issue [133] Incorrect Functionality
-Code Logic Issue [90] Unexpected Output
-Code Logic Issue [21] Hang
-Code Logic Issue [15] External Connection Failure
-Code Logic Issue [31] Unidentified
+R5 [100] S1
+R5 [133] S2
+R5 [90] S3
+R5 [21] S4
+R5 [15] S5
+R5 [31] S6
 
-Import Error [21] Crash
-Import Error [1] Incorrect Functionality
-Import Error [2] Unexpected Output
-Import Error [7] External Connection Failure
-Import Error [5] Unidentified
+R6 [21] S1
+R6 [1] S2
+R6 [2] S3
+R6 [7] S5
+R6 [5] S6
 
-Typo [11] Incorrect Functionality
-Typo [13] Unexpected Output
-Typo [14] External Connection Failure
-Typo [10] Unidentified
+R7 [11] S2
+R7 [13] S3
+R7 [14] S5
+R7 [10] S6
 
-Incorrect Exception Handling [6] Crash
-Incorrect Exception Handling [4] Incorrect Functionality
-Incorrect Exception Handling [12] Unexpected Output
-Incorrect Exception Handling [2] Hang
-Incorrect Exception Handling [7] External Connection Failure
+R8 [6] S1
+R8 [4] S2
+R8 [12] S3
+R8 [2] S4
+R8 [7] S5
 
-Incorrect Numerical Computation [3] Crash
-Incorrect Numerical Computation [2] Incorrect Functionality
-Incorrect Numerical Computation [4] Unexpected Output
-Incorrect Numerical Computation [1] Unidentified
+R9 [3] S1
+R9 [2] S2
+R9 [4] S3
+R9 [1] S6
 
 // === Settings ===
 
@@ -90,15 +90,15 @@ labels color #000000
   highlight 0.75
   fontface sans-serif
   linespacing 0.2
-  relativesize 110
+  relativesize 88
   magnify 100
 labelname appears Y
-  size 16
-  weight 400
+  size 19.5
+  weight 700
 labelvalue appears Y
   fullprecision Y
   position below
-  weight 400
+  weight 100
 labelposition autoalign 0
   scheme auto
   first before
@@ -112,3 +112,15 @@ themeoffset a 6
   d 0
 meta mentionsankeymatic Y
   listimbalances Y
+
+// === Moved Nodes ===
+
+move R7 -0.0021, 0.03645
+move R8 -0.01075, 0.01626
+move R2 -0.0043, -0.00549
+move R6 -0.00215, -0.03261
+move R4 0, -0.04445
+move R1 -0.00215, -0.02239
+move R3 0, -0.03088
+move R5 0, -0.04851
+move R9 -0.00645, -0.03398
